@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Angular Contact list app</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="app.css">
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="contact-list.controller.js"></script>
+  <script src="components/contact-info/contact-info.component.js"></script>
+  <script src="components/contact-editor/contact-editor.component.js"></script>
+  <script src="components/search-contact/search-contact.component.js"></script>
+
+
+
+</head>
+<body ng-app="contactList">
+
+<div class="container-fluid">
+  <div class="row panel-primary" ng-controller="contactListController">
+
+    <!-- Top toolbar -->
+    <div class="panel-heading">
+
+
+
+      <a ng-href="#!/edit-contact/new">
+        <button class="btn">
+          <span class="glyphicon glyphicon-plus"></span> Add new contact
+        </button>
+      </a>
+
+      <a ng-href="#!/search-contact">
+        <button class="btn">
+          <span class="glyphicon glyphicon-search"></span> Search contacts
+        </button>
+      </a>
+
+      <a href="#!/home" ng-if="!filtersEmpty()">
+        <button class="btn" ng-click="clearFilterFields()">
+          <span class="glyphicon glyphicon-home"></span> Reset search
+        </button>
+      </a>
+
+
+    </div>
+
+    <!-- Left container for list -->
+    <div class="col-xs-5 col-md-4 col-lg-3" >
+      <ul class="list-group">
+        <li class="list-group-item">
+
+          <!-- list sorter -->
+          <p>
+            Sort by:
+            <select ng-model="$ctrl.orderField" class="form-control">
+              <option value="id" checked>Id</option>
+              <option value="name">Name</option>
+              <option value="username">Username</option>
+              <option value="company.name">Company name</option>
+            </select>
+
+          </p>
+
+          <!-- here goes contact list -->
+          <a class="list-group-item" ng-href="#!/contact/{{contact.id}}" ng-repeat="contact in contactList | searchFilter: filterFields | orderBy: $ctrl.orderField">
+            <strong>{{contact.name}}</strong> <small>({{contact.username}})</small><br/><small alt="Company name">{{contact.company.name}}</small>
+          </a>
+
+
+        </li>
+      </ul>
+    </div>
+
+    <!-- place for viewing/editing/searching contacts -->
+    <div class="col-xs-7 col-md-8 col-lg-9">
+      <div class="list-group panel-body affix container-fluid" style="height: 100%; margin-top: -55px; padding-top: 55px">
+        <div ng-view style="overflow-y: auto; height: 100%; overflow-x: hidden"></div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

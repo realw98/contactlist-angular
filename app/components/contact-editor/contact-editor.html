@@ -1,0 +1,133 @@
+<h3 ng-if="isNewContact" class="text-center">Add new contact</h3>
+<h3 ng-if="!isNewContact" class="text-center">{{contact.name}}</h3>
+
+<div class="horizontal-form container-fluid" style="max-width: 600px; clear: right">
+
+    <div class="form-group">
+        <label for="name" class="control-label col-sm-3">Name: </label>
+        <div class="col-sm-9">
+        <input id="name" class="form-control col-sm-9" type="text" ng-model="contact.name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="username" class="control-label col-sm-3">Username: </label>
+        <div class="col-sm-9">
+        <input id="username" class="form-control" type="text" ng-model="contact.username">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="control-label col-sm-3">E-mail:</label>
+        <div class="col-sm-9">
+        <input id="email" class="form-control" type="text" ng-model="contact.email">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone"  class="control-label col-sm-3">Phone:</label>
+        <div class="col-sm-9">
+        <input id="phone" class="form-control" type="text" ng-model="contact.phone">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="website" class="control-label col-sm-3">Website:</label>
+
+        <div class="col-sm-9">
+            <input id="website" class="form-control" type="text" ng-model="contact.website">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <h4>Address</h4>
+
+
+        <label for="streetA" class="control-label col-sm-3">StreetA: </label>
+
+        <div class="col-sm-9">
+            <input id="streetA" class="form-control" type="text" ng-model="contact.address.streetA">
+        </div>
+
+
+        <label for="streetB" class="control-label col-sm-3">StreetB: </label>
+
+        <div class="col-sm-9">
+            <input id="streetB" class="form-control" type="text" ng-model="contact.address.streetB">
+        </div>
+
+
+        <label for="streetC" class="control-label col-sm-3">StreetC:</label>
+
+        <div class="col-sm-9">
+            <input id="streetC" class="form-control" type="text" ng-model="contact.address.streetC">
+        </div>
+
+
+        <label for="streetD" class="control-label col-sm-3">StreetD:</label>
+
+        <div class="col-sm-9">
+            <input id="streetD" class="form-control" type="text" ng-model="contact.address.streetD">
+        </div>
+
+
+        <label for="country" class="control-label col-sm-3">Country:</label>
+
+        <div class="col-sm-9">
+            <input id="country" class="form-control" type="text" ng-model="contact.address.country">
+        </div>
+
+        <label for="state" class="control-label col-sm-3">State:</label>
+
+        <div class="col-sm-9">
+            <input id="state" class="form-control" type="text" ng-model="contact.address.state">
+        </div>
+
+
+        <label for="city" class="control-label col-sm-3">City:</label>
+
+        <div class="col-sm-9">
+            <input id="city" class="form-control" type="text" ng-model="contact.address.city">
+        </div>
+
+
+        <label for="zip" class="control-label col-sm-3">ZIP:</label>
+
+        <div class="col-sm-9">
+            <input id="zip" class="form-control" type="text" ng-model="contact.address.zipcode">
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid" style="margin-top: 20px">
+
+        <a ng-if="isNewContact" ng-href="#!/contact/{{contactId}}" ng-click="addContact()">
+            <button class="btn btn-default">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span> Add contact</span>
+            </button>
+        </a>
+
+        <a ng-if="!isNewContact" ng-href="#!/contact/{{contactId}}" ng-click="saveContact()">
+            <button class="btn btn-default">
+                <span class="glyphicon glyphicon-ok"></span>
+                <span> Save changes</span>
+            </button>
+        </a>
+
+        <a ng-href="#!/contact/{{contactId}}">
+            <button class="btn btn-default" >
+                <span class="glyphicon glyphicon-remove"></span><span>  Cancel</span>
+            </button>
+        </a>
+
+</div>
+
+
+
+
+
+
