@@ -105,26 +105,26 @@ var contactListApp = angular.
             localStorage.setItem('ContactListData', JSON.stringify(_contactListData));
         };
 
+        //update existing contact with new data
         var saveContact = function(contactData) {
+            getById(contactData.id).then(function(contact) {
+                for (var field in contactData) {
+                    contact[field] = contactData[field];
+                }
+                _notifyAllVisitors();
+                _updateLocalStorage();
+            });
+       };
 
-            var contact = getById(contactData.id);
-            //update existing contact with new data
-            for (var field in contactData) {
-                contact[field] = contactData[field];
-            }
-            _notifyAllVisitors();
-            _updateLocalStorage();
-        };
-
+        //add new contact to storage
         var addContact = function(contactData) {
-            //add new contact to storage
             _contactListData.push(contactData);
             _notifyAllVisitors();
             _updateLocalStorage();
         };
 
+        //remove contact from storage and save data and notify
         var removeContact = function(contactId) {
-            //remove contact from storage and save data and notify
             for (var i=_contactListData.length; i--;) {
                 if (_contactListData[i].id === contactId) {
                     _contactListData.splice(i, 1);
