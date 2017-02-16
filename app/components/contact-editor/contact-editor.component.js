@@ -4,16 +4,23 @@ angular.
 
         templateUrl: 'components/contact-editor/contact-editor.html',
         controller: ['$scope', '$routeParams', 'ContactDataService', function($scope, $routeParams, ContactDataService) {
+
             $scope.isNewContact = ($routeParams.contactId === 'new');
 
             console.log('isNewContact', $scope.isNewContact);
 
             if ($scope.isNewContact) {
+
                 $scope.contactId = ContactDataService.getNextId();
+
             } else {
+
                 $scope.contactId = parseInt($routeParams.contactId);
                 //Pass the deep copy of contact to contact-editor, so we can always cancel editing
-                $scope.contact = Object.create(ContactDataService.getById($scope.contactId));
+                ContactDataService.getById($scope.contactId).then(function(contact) {
+                    $scope.contact = Object.create(contact);
+                });
+
             }
 
 

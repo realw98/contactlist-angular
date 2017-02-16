@@ -2,7 +2,7 @@
   "name": "contactlist-angular",
   "description": "Example project for AngularJS",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "homepage": "https://github.com/realw98/contactlist-angular",
   "license": "MIT",
   "private": true,
   "dependencies": {

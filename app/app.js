@@ -70,6 +70,7 @@ var contactListApp = angular.
                     //success
                     console.log('$http.get success');
                     localStorage.setItem('ContactListData', JSON.stringify(response.data));
+                    _contactListData = response.data;
                     deferred.resolve(response.data);
                 },
                 function(response) {
@@ -81,12 +82,23 @@ var contactListApp = angular.
             return deferred.promise;
         };
 
+        //this function should be async too, in case if data not loaded yet
         var getById = function(contactId) {
-            for (var i=_contactListData.length; i--;) {
-                if (_contactListData[i].id === contactId) {
-                    return _contactListData[i];
+            var deferred = $q.defer();
+
+            getContactListData().then(function(contactListData) {
+
+                for (var i=contactListData.length; i--;) {
+                    if (contactListData[i].id === contactId) {
+                        deferred.resolve(contactListData[i]);
+                        return;
+                    }
                 }
-            }
+                deferred.reject(null);
+
+            });
+
+            return deferred.promise;
         };
 
         var _updateLocalStorage = function() {

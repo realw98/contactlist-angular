@@ -51,6 +51,8 @@ angular.
 
         return function (items, filterFields) {
 
+            if (!items) return;
+
             if (!filterFields) return items;
 
             var filtered = [];

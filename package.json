@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "Example project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "repository": "https://github.com/realw98/contactlist-angular",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
@@ -16,6 +16,6 @@
     "postupdate-deps": "bower update",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000 -c-1 ./app"
+    "start": "http-server -a 0.0.0.0 -p 8000 -c-1 ./app"
   }
 }
